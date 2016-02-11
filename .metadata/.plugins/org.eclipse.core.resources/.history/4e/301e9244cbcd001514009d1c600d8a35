@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Registration</title>
+<script type="text/javascript" src="appController.js" >  </script>
+</head>
+<body>
+
+	 <label> Registration:  </label>
+	 <br>
+	 <br>
+	 <label> Username:  </label>
+	 <input type="text" id="userReg">
+	 <br>
+	 <label> Password:  </label>
+	 <input type="text" id="passReg">
+	 <br>
+	 <label> Nickname:  </label>
+	 <input type="text" id="nickReg">
+	 <br>
+	 <label> Description:  </label>
+	 <input type="text" id="descrReg">
+	 <br>
+	 <label> Photo link:  </label>
+	 <input type="text" id="linkReg">
+	 <br>
+	 <button type="submit" id="sign-up-reg"> <a href="index.html"> Sign-up </a> </button>
+
+</body>
+</html>

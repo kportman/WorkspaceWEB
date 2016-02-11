@@ -1,0 +1,9 @@
+var app = angular.module("funItaly", []);
+
+app.controller('regCont', ['$scope', '$http',
+	function ($scope, $http) 
+	{
+		
+	     
+	 
+	}]);

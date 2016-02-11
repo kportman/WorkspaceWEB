@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>AngularJS example</title>
+<!-- AngularJS library must be linked -->
+<script src= "https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0-beta.2/angular.min.js"></script>
+
+<style>
+.center {
+    margin-left: auto;
+    margin-right: auto;
+	margin-top: 200px;
+    width: 30%;
+}
+
+.searchbox {
+    font-size: 120%;
+}
+
+table, th, td {
+   border: 1px solid black;
+} 
+
+th{
+	background-color: #B3C4A2;
+}
+
+.highlight{
+	background-color: yellow;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- The in-table search application scope will be defined within this <div>...</div> environment -->
+<div class="center" ng-app="inTableSearchApp" ng-controller="inTableSearchController">
+<h2>Interactive Table Search Example</h2>
+<input class="searchbox" type="text" ng-model="query" ng-change="search()"/>
+<br/>Your query: {{query}}<!-- any time the user types a keyword it will be immediately reflected back in the view -->
+<br/>
+<br/>
+<!-- this table holds the search results -->
+<table>
+  <tr>
+	<th>Name</th>
+	<th>City</th>
+	<th>Country</th>
+  </tr>
+  <!-- output each result into the table -->
+  <tr ng-repeat="x in result">
+    <!-- ng-bind-html allows to bind a variable to the innerHTML part of the HTML element -->
+    <td ng-bind-html="hlight(x.Name,query)" /><td ng-bind-html="hlight(x.City,query)" /><td ng-bind-html="hlight(x.Country,query)" />
+  </tr>
+</table>
+</div>
+
+</div><!-- end of application scope -->
+
+<script>
+/* Our main application module is defined here using a single controller which will initiate its scope
+and define some behavior.
+This module further depends on an helper module 'txtHighlight'.
+*/
+angular.module('inTableSearchApp',['txtHighlight'])
+	.controller('inTableSearchController', ['$scope','$http', 'highlightText', function($scope,$http,highlightText) {
+	
+    $scope.query = "";//this variable will hold the user's query
+	
+	//obtain some dataset online
+	//$http is AngularJS way to do ajax-like communications
+	$http.get("http://localhost:8080/Example/customers.json") ///name/Alfreds Futterkiste
+			.success(function(response) {
+			   $scope.records = response;
+			   $scope.result = $scope.records;//this variable will hold the search results
+			});
+			
+	//this method will be called upon change in the text typed by the user in the searchbox
+	$scope.search = function(){
+	    if (!$scope.query || $scope.query.length == 0){
+		    //initially we show all table data
+			$scope.result = $scope.records;
+		}else{
+		    var qstr = $scope.query.toLowerCase();
+			$scope.result = [];
+			for (x in $scope.records){
+				//check for a match (up to a lowercasing difference)
+				if ($scope.records[x].Name.toLowerCase().match(qstr) ||
+					$scope.records[x].City.toLowerCase().match(qstr) ||
+					$scope.records[x].Country.toLowerCase().match(qstr))
+				{
+					$scope.result.push($scope.records[x]); //add record to search result
+				}
+			}
+	   }
+	};
+	
+	//delegate the text highlighting task to an external helper service 
+	$scope.hlight = function(text, qstr){
+		return highlightText.highlight(text, qstr);
+	};
+	
+}]);
+</script> 
+
+<script>
+/*
+* Helper service which takes a query and matching text and highlights the matching parts.
+* This helper makes use of the Angular $sce (Strict Contextual Escaping) object which allows
+* to add inner HTML into other HTML elements. 
+* See more details in: https://docs.angularjs.org/api/ng/service/$sce
+*/
+angular.module('txtHighlight',[])
+  .factory('highlightText', ['$sce', function($sce){
+        
+		//service method to be called upon text highlighting
+		var highlight = function(text, qstr){
+		
+		    if (!qstr || qstr.length == 0) return $sce.trustAsHtml(text);
+		    
+			var lcqstr = qstr.toLowerCase();
+			var lctext = text.toLowerCase();
+			var i = lctext.indexOf(lcqstr);
+			
+			if (i >= 0){
+			    
+				var prfxStr = text.substring(0,i);
+				var match = text.substring(i,i + qstr.length);
+				var sfxStr = text.substring(i + qstr.length, text.length);
+				//we wrap the matching text with <span>...</span> environment so we can control how 
+				//highlighting will be actually done
+				var hgltText = prfxStr + '<span class="highlight">' + match + '<\/span>' + sfxStr;
+				return $sce.trustAsHtml(hgltText);
+			}else{
+				return $sce.trustAsHtml(text);
+			}
+	  };
+	  
+	  return {
+		highlight: highlight
+	  };
+	  
+  }]);
+</script>
+
+</body>
+</html>

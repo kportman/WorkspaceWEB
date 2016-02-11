@@ -1,0 +1,40 @@
+var app = angular.module("funItaly", []);
+
+app.controller('regCont', ['$scope', '$http',
+	function ($scope, $http){
+	this.username="";
+	this.password="";
+	this.nickname="";
+	this.description="";
+	this.imageLink="";
+	
+	this.registration = function(){
+		alert("I'm in registration function");
+		$http({
+			method:'POST',
+			url:"app/registration",
+			transformRequest: function(arr) {
+				
+				var string = [];
+				for( var i in arr )
+				{
+					string.push(encodeURIComponent(i) + "=" + encodeURIComponent(arr[i]));
+				}
+				return string.join("&");
+			},
+			data: { username: this.username, password: this.password, nickname: this.nickname, description: this.description , imageLink: this.imageLink },
+			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+		}).success( function(info){
+			if( info == "OK" )
+			{
+				window.location = "\index.html";
+			}
+			else{
+				alert("failed");
+			}
+		});// end success
+		
+	};// end registration function
+	     
+	 
+	}]);

@@ -1,0 +1,37 @@
+(function() {
+	
+	var app = angular.module('askme',[]);
+	
+	app.controller('regCont',['$scope','$http',function($scope,$http){
+		this.username="";
+		this.password="";
+		this.nickname="";
+		this.description="";
+		this.imageLink="";
+		
+		$http({
+			method:'POST',
+			url:"AskMe/registration",
+			transformRequest: function(arr) {
+				
+				var string = [];
+				for( var i in arr )
+				{
+					string.push(encodeURIComponent(i) + "=" + encodeURIComponent(arr[i]));
+				}
+				return string.join("&");
+			},
+			data: { username: this.username, password: this.password, nickname: this.nickname, description: this.description , imageLink: this.imageLink },
+			headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+		}).success( function(info){
+			if( info != "OK" )
+			{
+				//alert
+			}
+			
+		});
+		
+	}]);
+	
+	
+})();

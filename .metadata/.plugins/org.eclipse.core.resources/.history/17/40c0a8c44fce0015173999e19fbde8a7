@@ -1,0 +1,86 @@
+package app.listeners;
+
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+import javax.servlet.ServletContextEvent;
+import javax.servlet.ServletContextListener;
+import javax.servlet.annotation.WebListener;
+
+import org.apache.tomcat.dbcp.dbcp.BasicDataSource;
+
+import app.AppConstants;
+
+/**
+ * Application Lifecycle Listener implementation class FunItalyContextListener
+ *
+ */
+@WebListener
+public class FunItalyContextListener implements ServletContextListener {
+	
+    /**
+     * Default constructor. 
+     */
+    public FunItalyContextListener() {
+        // TODO Auto-generated constructor stub
+    }
+
+	/**
+     * @see ServletContextListener#contextDestroyed(ServletContextEvent)
+     */
+    public void contextDestroyed(ServletContextEvent arg0)  { 
+         // TODO Auto-generated method stub
+    }
+
+    
+    
+	/**
+     * @see ServletContextListener#contextInitialized(ServletContextEvent)
+     */
+    public void contextInitialized(ServletContextEvent arg0)  { 
+         
+    	
+    	Connection connection = null;
+		Statement statement = null;
+		
+		Context context;
+		try {
+			
+			context = new InitialContext();
+			BasicDataSource dataSource = (BasicDataSource) context.lookup(AppConstants.DB_DATASOURCE);
+			connection = dataSource.getConnection();
+			
+			if( AppConstants.CREATE_DB == true )
+	    	{
+				statement = connection.createStatement();
+				statement.executeUpdate(AppConstants.CREATE_USER_TABLE);
+				connection.commit();
+				
+				statement.close();
+	    	}
+			
+			
+		} catch (NamingException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		finally{
+			
+			try {
+				connection.close();
+				statement.close();
+			} catch (SQLException e) {
+				
+				e.printStackTrace();
+			}
+			
+			
+		}
+    	
+    }
+	
+}

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>AskMe</title>
+<script type="text/javascript" src="appController.js" >  </script>
+<script type="text/javascript" src="angular.min.js" >  </script>
+<script type="text/javascript" src="jquery-1.11.3.min.js" >  </script>
+</head>
+<body>
+	<div ng-app="ask-me">
+	
+		 <div ng-controller="signCont"> 
+		 
+			 <form>
+			
+			 <label> Sign in:  </label>
+			 <br>
+			 <input ng-model="" type="text" id="user">
+			 <br>
+			 <input ng-model="" type="text" id="pass">
+			 <br>
+			 <button ng-model="" type="submit" id="sign-in"> Sign in </button>
+			 <br>
+			 <br>
+			 <label> Registration:  </label>
+			 <br>
+			 <button type="submit" id="sign-up"> <a href="registration.html"> Sign up </a> </button>
+			 
+			 </form>
+			
+		</div>
+	
+	</div>
+</body>
+</html>

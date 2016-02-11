@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	
+	<form>
+	
+	 <label> Sign in:  </label>
+	 <br>
+	 <input type="text" id="user">
+	 <br>
+	 <input type="text" id="pass">
+	 <br>
+	 <button type="submit" id="sign-in"> Sign in </button>
+	
+	 <label> Registration:  </label>
+	 <button type="submit" id="sign-up"> Sign up </button>
+	</form>
+	
+	
+	
+</body>
+</html>
