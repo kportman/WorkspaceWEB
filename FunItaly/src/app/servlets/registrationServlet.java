@@ -61,6 +61,7 @@ public class registrationServlet extends HttpServlet {
 			statement.setString( 3 , request.getParameter("nickname"));
 			statement.setString( 4 , request.getParameter("description"));
 			statement.setString( 5 , request.getParameter("imageLink"));
+			statement.setInt(6, 0);
 			
 			statement.executeUpdate();
 			

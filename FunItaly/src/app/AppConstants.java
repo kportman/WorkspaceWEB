@@ -20,7 +20,17 @@ public interface AppConstants {
 	
 	//create statements:
 	
-	public final String CREATE_USER_TABLE2 = "CREATE TABLE USER(USERNAME varchar(10) PRIMARY KEY,PASSWORD varchar(8),NICKNAME varchar(8),DESCRIPTION varchar(50),PHOTOLINK varchar(300))";
+	public final String SELECT_NEW_QUESTIONS_BY_OFFSET = "SELECT TIME_ASKED,"
+			+ "QUESTION_TEXT,"
+			+ "TOPIC,"
+			+ "NICKNAME,"
+			+ "RATING,"
+			+ "VOTES "
+			+ "FROM QUESTIONS "
+			+ "WHERE NUM_OF_ANSWERS=0 "
+			+ "ORDER BY TIME_ASKED "
+			+ "OFFSET ? ROWS "
+			+ "FETCH NEXT 20 ROWS ONLY";
 	
 	public final String CHECK_USER= "SELECT * "
 			+ "FROM USERS "
@@ -36,7 +46,8 @@ public interface AppConstants {
 			+ "PASSWORD VARCHAR(8) NOT NULL CHECK (PASSWORD <> ''),"
 			+ "NICKNAME VARCHAR(20) NOT NULL CHECK (NICKNAME <> ''),"
 			+ "DESCRIPTION VARCHAR(2048),"
-			+ "PHOTO_URL VARCHAR(255),"
+			+ "PHOTO_URL VARCHAR(20000),"
+			+ "RATING INT DEFAULT 0,"
 			+ "UNIQUE (NICKNAME))";
 	
 	public final String CREATE_QUESTIONS_TABLE="CREATE TABLE QUESTIONS("
@@ -45,19 +56,19 @@ public interface AppConstants {
 			+ "VOTES INT DEFAULT 0,"
 			+ "QUESTION_TEXT VARCHAR(140) NOT NULL CHECK (QUESTION_TEXT <> ''),"
 			+ "NICKNAME VARCHAR(20) CHECK (NICKNAME <> ''),"
+			+ "TIME_ASKED TIMESTAMP NOT NULL,"
+			+ "NUM_OF_ANSWERS INT DEFAULT 0,"
+			+ "TOPIC VARCHAR(140),"
 			+ "FOREIGN KEY	(NICKNAME) REFERENCES USERS(NICKNAME))";
 	
 	//insert statements:
 	
-	public final String INSERT_USER_STMT = "INSERT INTO USERS VALUES(?,?,?,?,?)";
-	public final String INSERT_QUESTION_STMT="INSERT INTO QUESTIONS VALUES(?,?,?,?,?)";
+	public final String INSERT_USER_STMT = "INSERT INTO USERS VALUES(?,?,?,?,?,?)";
+	public final String INSERT_QUESTION_STMT="INSERT INTO QUESTIONS VALUES(?,?,?,?,?,?,?,?)";
 	
 	public final Boolean CREATE_DB = false;// Initialize to true only if data base is new, Otherwise - set to false
 	
 	public final String QUESTIONS_SEQUENCE = "SELECT NEXT VALUE FOR Q_SEQ";
 	public final String MAX_ID = "SELECT MAX(ID) FROM QUESTIONS";
 	
-	//public final String SELECT_ALL_CUSTOMERS_STMT = "SELECT * FROM CUSTOMER";
-	//public final String SELECT_CUSTOMER_BY_NAME_STMT = "SELECT * FROM CUSTOMER "
-	//		+ "WHERE Name=?";
 }

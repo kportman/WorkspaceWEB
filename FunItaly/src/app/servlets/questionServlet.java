@@ -6,6 +6,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
+import java.util.Date;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -51,6 +53,10 @@ public class questionServlet extends HttpServlet {
 		PreparedStatement pStatement = null;
 		Statement statement = null;
 		ResultSet resSet = null;
+		
+		Date date=new Date();
+		Timestamp timestamp = new Timestamp(date.getTime());
+		
 		int id = 1;
 		try {
 			
@@ -73,6 +79,9 @@ public class questionServlet extends HttpServlet {
 			pStatement.setInt ( 3 , 0);
 			pStatement.setString( 4 , request.getParameter("question"));
 			pStatement.setString( 5 , request.getParameter("nickname"));
+			pStatement.setTimestamp ( 6 , timestamp);
+			pStatement.setInt( 7, 0);
+			pStatement.setString(8, request.getParameter("topic"));
 			pStatement.executeUpdate();
 			connection.commit();
 			

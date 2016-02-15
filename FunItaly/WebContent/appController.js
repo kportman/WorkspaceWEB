@@ -90,7 +90,7 @@ app.controller('mainCont', ['$scope', '$http',
                        				}
                        				return string.join("&");
                        			},
-                       			data: { nickname: $scope.nickname, question: $scope.question },
+                       			data: { nickname: $scope.nickname, question: $scope.question, topic: $scope.topic },
                        			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
                        		}).success( function(info){
                        			if(info == "Ok")
@@ -110,3 +110,33 @@ app.controller('profileCont', ['$scope', '$http',
                     $scope.photoLink = window.localStorage.photoLink;      	
                            	
     }]);//end profileCont controller
+
+app.controller('newestCont', ['$scope', '$http',
+                              	function ($scope, $http){
+                      
+                      $scope.questions = {};
+                      $scope.writeReply = false;
+                      $scope.showReply = false;
+                      $scope.qAnswer = "";
+                      
+                      $scope.display = function(){
+                    	  alert("I'm in display function");
+	                      $http({ 
+	      					method: 'GET',
+	      					url: '/FunItaly/getQuestions',
+	      					params: { getQuestions: "newest" , offset: 0 },
+	      					headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+	      				}).success( function(data) {
+	      					$scope.questions = data;
+	      				});
+                     }   
+                      
+                      $scope.answer = function(){
+                    	  
+                    	  
+                      }
+                      $scope.publish = function(){
+                    	  
+                      }
+                                          	
+       }]);//end newestCont controller

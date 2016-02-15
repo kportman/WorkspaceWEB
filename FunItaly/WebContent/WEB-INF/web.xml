@@ -34,7 +34,7 @@
     <servlet-name>questionServlet</servlet-name>
     <url-pattern>/question</url-pattern>
   </servlet-mapping>
-    <servlet>
+  <servlet>
     <description></description>
     <display-name>profileServlet</display-name>
     <servlet-name>profileServlet</servlet-name>
@@ -43,6 +43,16 @@
   <servlet-mapping>
     <servlet-name>profileServlet</servlet-name>
     <url-pattern>/profile</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>getQuestionsServlet</display-name>
+    <servlet-name>getQuestionsServlet</servlet-name>
+    <servlet-class>app.servlets.getQuestionsServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>getQuestionsServlet</servlet-name>
+    <url-pattern>/getQuestions</url-pattern>
   </servlet-mapping>
   <listener>
     <listener-class>app.listeners.FunItalyContextListener</listener-class>
