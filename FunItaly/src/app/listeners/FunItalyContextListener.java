@@ -1,6 +1,8 @@
 package app.listeners;
 
 import java.sql.Connection;
+import java.sql.DatabaseMetaData;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -43,32 +45,41 @@ public class FunItalyContextListener implements ServletContextListener {
     public void contextInitialized(ServletContextEvent arg0)  { 
     	Connection connection = null;
 		Statement statement = null;
+		ResultSet resSet = null;
 		
-		if( AppConstants.CREATE_DB == true )
-    	{
 		try {
-			
 				Context context = new InitialContext();
 				BasicDataSource dataSource = (BasicDataSource) context.lookup(AppConstants.DB_DATASOURCE);
 				connection = dataSource.getConnection();
-				statement = connection.createStatement();
+				DatabaseMetaData dbmd = connection.getMetaData();
+
+				resSet = dbmd.getTables(null, null, "USERS", null);
+				if (resSet.next() == false) {
+					statement = connection.createStatement();
+					statement.executeUpdate(AppConstants.CREATE_USER_TABLE);
+					connection.commit();
+					statement.close();
+				}
+				resSet.close();
 				
-				statement.executeUpdate(AppConstants.CREATE_USER_TABLE);
-				connection.commit();
-				
-				statement.close();
+				resSet = dbmd.getTables(null, null, "QUESTIONS", null);
+				if (resSet.next() == false) {
+					statement = connection.createStatement();
+					statement.executeUpdate(AppConstants.CREATE_QUESTIONS_TABLE);
+					connection.commit();
+					statement.close();
+				}
+				resSet.close();
 		} catch (NamingException | SQLException e) {
 			e.printStackTrace();
 		}
 		finally{
-			
 			try {
 				connection.close();
 			} catch (SQLException e) {
-				
 				e.printStackTrace();
 			}	
-		}
+		
     	}
     }
 	

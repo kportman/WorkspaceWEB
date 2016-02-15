@@ -22,19 +22,40 @@ public interface AppConstants {
 	
 	public final String CREATE_USER_TABLE2 = "CREATE TABLE USER(USERNAME varchar(10) PRIMARY KEY,PASSWORD varchar(8),NICKNAME varchar(8),DESCRIPTION varchar(50),PHOTOLINK varchar(300))";
 	
+	public final String CHECK_USER= "SELECT * "
+			+ "FROM USERS "
+			+ "WHERE USERNAME=? "
+			+ "AND PASSWORD=?";
+	
+	public final String GET_USER= "SELECT * "
+			+ "FROM USERS "
+			+ "WHERE USERNAME=? ";
+	
 	public final String CREATE_USER_TABLE="CREATE TABLE USERS("
-			+ "U_USERNAME VARCHAR(10) CHECK (U_USERNAME <> '') PRIMARY KEY,"
-			+ "U_PASSWORD VARCHAR(8) NOT NULL CHECK (U_PASSWORD <> ''),"
-			+ "U_NICKNAME VARCHAR(20) NOT NULL CHECK (U_NICKNAME <> ''),"
-			+ "U_DESCRIPTION VARCHAR(2048),"
-			+ "U_PHOTO_LINK VARCHAR(255),"
-			+ "UNIQUE (U_NICKNAME))";
+			+ "USERNAME VARCHAR(10) CHECK (USERNAME <> '') PRIMARY KEY,"
+			+ "PASSWORD VARCHAR(8) NOT NULL CHECK (PASSWORD <> ''),"
+			+ "NICKNAME VARCHAR(20) NOT NULL CHECK (NICKNAME <> ''),"
+			+ "DESCRIPTION VARCHAR(2048),"
+			+ "PHOTO_URL VARCHAR(255),"
+			+ "UNIQUE (NICKNAME))";
+	
+	public final String CREATE_QUESTIONS_TABLE="CREATE TABLE QUESTIONS("
+			+ "ID INT PRIMARY KEY,"
+			+ "RATING INT DEFAULT 0,"
+			+ "VOTES INT DEFAULT 0,"
+			+ "QUESTION_TEXT VARCHAR(140) NOT NULL CHECK (QUESTION_TEXT <> ''),"
+			+ "NICKNAME VARCHAR(20) CHECK (NICKNAME <> ''),"
+			+ "FOREIGN KEY	(NICKNAME) REFERENCES USERS(NICKNAME))";
 	
 	//insert statements:
 	
 	public final String INSERT_USER_STMT = "INSERT INTO USERS VALUES(?,?,?,?,?)";
+	public final String INSERT_QUESTION_STMT="INSERT INTO QUESTIONS VALUES(?,?,?,?,?)";
 	
 	public final Boolean CREATE_DB = false;// Initialize to true only if data base is new, Otherwise - set to false
+	
+	public final String QUESTIONS_SEQUENCE = "SELECT NEXT VALUE FOR Q_SEQ";
+	public final String MAX_ID = "SELECT MAX(ID) FROM QUESTIONS";
 	
 	//public final String SELECT_ALL_CUSTOMERS_STMT = "SELECT * FROM CUSTOMER";
 	//public final String SELECT_CUSTOMER_BY_NAME_STMT = "SELECT * FROM CUSTOMER "

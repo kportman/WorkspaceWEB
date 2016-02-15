@@ -1,10 +1,11 @@
 package app.servlets;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -20,15 +21,16 @@ import org.apache.tomcat.dbcp.dbcp.BasicDataSource;
 import app.AppConstants;
 
 /**
- * Servlet implementation class registrationServlet
+ * Servlet implementation class questionServlet
  */
-public class registrationServlet extends HttpServlet {
+@WebServlet("/questionServlet")
+public class questionServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public registrationServlet() {
+    public questionServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -45,44 +47,62 @@ public class registrationServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		Connection connection = null;
-		PreparedStatement statement = null;
-		
+		PreparedStatement pStatement = null;
+		Statement statement = null;
+		ResultSet resSet = null;
+		int id = 1;
 		try {
 			
 			Context context = new InitialContext();
 			BasicDataSource dataSource = (BasicDataSource) context.lookup(AppConstants.DB_DATASOURCE);
 			connection = dataSource.getConnection();
 			
-			statement = connection.prepareStatement(AppConstants.INSERT_USER_STMT);
-			statement.setString( 1 , request.getParameter("username"));
-			statement.setString( 2 , request.getParameter("password"));
-			statement.setString( 3 , request.getParameter("nickname"));
-			statement.setString( 4 , request.getParameter("description"));
-			statement.setString( 5 , request.getParameter("imageLink"));
+			statement = connection.createStatement();
+			resSet = statement.executeQuery(AppConstants.MAX_ID);
+			if(resSet.next() == true)
+			{
+				id = resSet.getInt(1)+1;
+			} 
+			connection.commit();
+			statement.close();
 			
-			statement.executeUpdate();
-			
+			pStatement = connection.prepareStatement(AppConstants.INSERT_QUESTION_STMT);
+			pStatement.setInt ( 1 , id);
+			pStatement.setInt ( 2 , 0);
+			pStatement.setInt ( 3 , 0);
+			pStatement.setString( 4 , request.getParameter("question"));
+			pStatement.setString( 5 , request.getParameter("nickname"));
+			pStatement.executeUpdate();
 			connection.commit();
 			
 			response.setContentType("text/html");
 			response.getWriter().print("Ok");
 			System.out.println("Ok");
 			
-			
-			
 		} catch (NamingException | SQLException e) {
 			e.printStackTrace();
 		}
 		finally{
 			try {
-				statement.close();
+				pStatement.close();
 				connection.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
 		}
+		
+		
+		
+	
+		
+		
+		
+		
+		
+		
+		
+		
 		
 		
 	}
