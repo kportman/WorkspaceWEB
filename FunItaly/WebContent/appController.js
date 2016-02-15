@@ -113,11 +113,12 @@ app.controller('profileCont', ['$scope', '$http',
 
 app.controller('newestCont', ['$scope', '$http',
                               	function ($scope, $http){
-                      
                       $scope.questions = {};
                       $scope.writeReply = false;
                       $scope.showReply = false;
+                      $scope.clickToAns = true;
                       $scope.qAnswer = "";
+                      
                       
                       $scope.display = function(){
                     	  alert("I'm in display function");
@@ -132,11 +133,13 @@ app.controller('newestCont', ['$scope', '$http',
                      }   
                       
                       $scope.answer = function(){
-                    	  
+                    	  $scope.writeReply = true;
+                    	  $scope.clickToAns = false;
                     	  
                       }
                       $scope.publish = function(){
-                    	  
+                    	  $scope.writeReply = false;
+                    	  $scope.showReply = true;
                       }
                                           	
        }]);//end newestCont controller

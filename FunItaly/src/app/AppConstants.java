@@ -28,7 +28,7 @@ public interface AppConstants {
 			+ "VOTES "
 			+ "FROM QUESTIONS "
 			+ "WHERE NUM_OF_ANSWERS=0 "
-			+ "ORDER BY TIME_ASKED "
+			+ "ORDER BY TIME_ASKED DESC "
 			+ "OFFSET ? ROWS "
 			+ "FETCH NEXT 20 ROWS ONLY";
 	

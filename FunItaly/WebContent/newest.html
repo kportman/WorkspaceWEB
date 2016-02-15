@@ -49,14 +49,15 @@
 			<a href="#"><span>{{q.nickname}}</span></a>
 			<span>{{q.rating}}</span>
 			<div>{{q.text}}</div>
-			<button ng-click="answer()">Answer</button>
+			<button ng-click="answer()" ng-show="clickToAns">Answer</button>
 		</fieldset>	
 		<!-- New Reply -->
 		<fieldset ng-show="writeReply">
-			<textarea ng-model="q-answer" placeholder="Write your answer here..."></textarea>
+			<textarea ng-model="qAnswer" placeholder="Write your answer here..."></textarea>
 			<button ng-click="publish()">Publish</button>
 		</fieldset>
-		<div ng-show="showReply">{{q.answer}}</div>
+		<div ng-show="showReply">{{qAnswer}}</div>
+		<br>
 	</div>
 	
 	
