@@ -1,0 +1,428 @@
+header
+{
+    height: 72px;
+    width: 100%;
+    background-color: black;
+}
+
+.heading
+{
+    width: 80%;
+    display: inline-block;
+    position: relative;
+    left: 120px;
+    right: 120px;
+    padding-left: 20px;
+    padding-top: 20px;
+}
+
+.find
+{
+    float: right;
+    width: 16em;
+    height: 2em;
+}
+
+.body-heading
+{
+    background: rgba(120, 120, 120, 0.7);
+    padding: 1em;
+    width: 80%;
+    display: inline-block;
+    position: relative;
+    left: 120px;
+    right: 120px;
+    padding-left: 20px;
+}
+
+.nav-section
+{
+    background: black;
+    height: 11em;
+    width: 32%;
+    margin: 1%;
+    color: white;
+    text-align: center;
+    box-sizing: border-box;
+    display: inline-block;
+    position: relative;
+    cursor: pointer;
+    font-size: 1rem;
+    vertical-align: bottom;
+}
+
+.nav-section > p
+{
+    font-size: 1.3em;
+    margin-top: 0.5em;
+}
+
+body
+{
+    background-image: url(../img/body-background.jpg);
+    background-size: cover;
+}
+
+.menu-caption
+{
+    background: rgb(235, 235, 235);
+    font-size: 13px;
+    color: black;
+    text-align: left;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+.menu-caption > p ,.dynamic-drop-down>ul
+{
+    padding-left: 1em;
+    float: left;
+}
+
+.menu-caption:after
+{
+    content: "";
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 10px solid black;
+    float: right;
+    margin: 1em;
+    -moz-transition: 0.5s all;
+    -webkit-transition: 0.5s all;
+}
+
+.notifications  p 
+{
+    background: rgb(235, 235, 235);
+    padding: 0.6em 1.8em 0.6em 1.8em;
+    font-size: 14px;
+    margin: 1em;
+}
+
+.nav-section:first-child
+{
+    margin-left: 0;
+}
+
+.nav-section:last-child
+{
+    margin-right: 0;
+}
+
+.nav-section:hover,.nav-section:focus
+{
+    background-color: #333333 !important;
+}
+
+.nav-section:hover .menu-caption:after,.nav-section:focus .menu-caption:after
+{
+    transform: rotate(180deg);
+}
+
+.nav-section:hover .action-list,.nav-section:focus .action-list
+{
+    display: block;
+}
+
+.action-list
+{
+    width: 100%;
+    text-align: left;
+    position: absolute;
+    top: 160px;
+    z-index: 1;
+    list-style-type: none;
+    display: none;
+    padding: 0;
+
+}
+
+.action-list >li
+{
+
+    padding: 0.7em;
+    background: white;
+    border-bottom: 1px solid rgb(235, 235, 235);
+    font-size: 13px;
+}
+
+.action-list >li > a
+{
+    text-decoration: none;
+    color: black;
+}
+
+.action-list >li:last-child
+{
+    border-bottom: none;
+}
+
+.tabs
+{
+    padding: 1em;
+}
+
+.tabs >ul , nav
+{
+    list-style-type: none;
+    padding: 0;
+    margin-bottom: 0;
+    font-size: 0;
+}
+
+.tabs >ul >li 
+{
+    display: inline-block;
+    background: rgb(100,100,100);
+    text-align: center;
+    width: 23.5%;
+    margin: 0 1% 0 1%;
+    padding: 1em;
+    box-sizing: border-box;
+    font-size: 1.2rem;
+    vertical-align: bottom;
+}
+
+.tabs >ul >li >a 
+{
+    text-decoration: none;
+    color:white;
+}
+
+.tabs >ul >li >a >i 
+{
+    padding-right: 5px
+}
+
+.tabs >ul >li:focus
+{
+    background: rgb(235, 235, 235);
+    outline: none;
+}
+
+.active-tab 
+{
+    background: rgb(235, 235, 235)!important;
+}
+
+.active-tab >a
+{
+    color: black!important;
+}
+
+.tabs li:first-child
+{
+    margin-left: 0;
+}
+
+.tabs li:last-child
+{
+    margin-right: 0;
+}
+
+#my-folders,#public-folders
+{
+    width: 100%;
+    height: 600px;
+    background: rgb(235, 235, 235);
+    display: none;
+    position: relative;
+}
+
+.frame-window 
+{
+    width: 100%;
+    height: 84%;
+    border: medium none;
+    position: absolute;
+    margin: 0em;
+    box-sizing: border-box;
+    display: block;
+    padding-right: 2em;
+    top: 68px;
+    z-index: 0;
+}
+
+.expand-icon ,.settings-icon
+{
+    float: right;
+    text-align: center;
+    margin: 1em 1em 0 1em;
+    display: block;
+    width: 20px;
+    height: 20px;
+}
+
+.report-container 
+{
+    height: 40%;
+    width:90%;
+    margin-top: 10%;
+    position: relative;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.icons-bar
+{
+    width: 100%;
+    height: auto;
+    display: inline-block;
+    z-index: 1;
+    position: relative;
+    top: 4px;
+}
+
+.settings
+{
+    background: white;
+    padding: 1em;
+    box-shadow: 1px 1px 6px 2px gray;
+    height: 36%;
+    position: relative;
+    z-index: 2;
+}
+
+.settings  > form > ul
+{
+    padding-left: 0;
+}
+
+.settings  > form > ul > li
+{
+    display: inline-block;
+    width: 100%;
+    list-style-type: none;
+    background: rgb(235, 235, 235);
+    padding: 10px 0 10px 0;
+    margin: 2px 0 7px 0;
+    font-size: 12px;
+}
+
+.settings  > form > ul > li > label
+{
+    box-sizing: border-box;
+    width: 20%;
+    margin: 0 7% 0 2%;
+}
+
+.settings  form ul div
+{
+    box-sizing: border-box;
+    width: 40%;
+    display: inline-block;
+}
+
+.settings  > form > ul input 
+{
+    border: none;
+    width: 80%;
+    height: 1.5em;
+    vertical-align: middle;
+    font-size: 12px;
+}
+
+.save, .cancel
+{
+    position: relative;
+    float: left;
+    border: none;
+    padding: 5px;
+    font-size: 12px;
+    width: 6em;
+    margin-left: 1em;
+    cursor: pointer;
+    outline: none;
+}
+
+.save
+{
+    color: white;
+    background: black;
+}
+.form-buttons 
+{
+    float: right;
+}
+
+.cancel
+{
+    color: black;
+    background: white;
+    text-decoration: underline;
+}
+
+#my-team-folders, #qr
+{
+    width: 100%;
+    height: 600px;
+    background: rgb(235, 235, 235);
+    display: none;
+    position: relative;
+    padding: 1em;
+    box-sizing: border-box;
+}
+
+.settings-icon-wrapper
+{
+    background: white;
+    height: 3em;
+    width: 3em;
+    float: right;
+}
+
+.styled-select-list li a:link ,.styled-select-list li a:visited 
+{
+    text-decoration: none;
+    color: #6E6E6E;
+}
+
+.styled-select-list 
+{
+    margin-left: 0;
+    margin-top: 0;
+    padding: 5px 0 5px 9px;
+    list-style-type: none;
+    text-align: left;
+    position: absolute;
+    width: 300px;
+    background: white none repeat scroll 0 0;
+    display: none;
+    cursor: default;
+}
+
+.styled-select-list li:first-child 
+{
+ display: block;   
+}
+
+.styled-select-list li 
+{
+ display: none;   
+}
+
+.styled-select-list li:first-child:after 
+{
+    content: "";
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 10px solid black;
+    float: right;
+    margin-top: 5px;
+    margin-right: 10px;
+}
+
+.styled-select-list:hover  li
+{
+    display: block;
+}
+
+#my-folders .frame-window, #public-folders .frame-window
+{
+    margin: 1em;
+}
