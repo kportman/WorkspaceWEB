@@ -10,7 +10,7 @@
 <header>
     <div class="heading">
         <a href="http://www.netcraft.co.il" tabindex="2"><img src="img/logo-netcraft.svg" alt="Netcraft Logo"></a>
-        <input tabindex="1" class="find" placeholder="Find......" type="text" >
+        <input tabindex="1" class="find" placeholder="Find" type="text" >
     </div>
 </header>
 
@@ -52,140 +52,99 @@
         </ul>
         <div id="qr" class="qr">
             <div class="icons-bar">
-                <ul class="styled-select-list">
+                <ul class="sel">
                 </ul>
-                <div class="settings-icon-wrapper">
+                <div class="set-box">
                     <div class="settings-icon">
-                        <img src="img/icons/settings.png" alt="open in new window">
+                        <img src="img/icons/settings.png" alt="got to link in new tab">
                     </div>
                 </div>
-                <a href="" class="expand-icon" target="_blank">
-                    <img src="img/icons/expand.png" alt="open in new window">
+                <a target="_blank" href="" class="expand-icon">
+                    <img src="img/icons/expand.png" alt="got to link in new tab">
                 </a>
             </div>
             <div class="settings">
-                <form action="" onsubmit="event.preventDefault()">
+                <form action="">
                     <ul>
                         <li>
-                            <label>Report 01</label>
+                            <label class="moveLeft">Quick report 1</label>
                             <div>
-                                <label for="name1" >Name</label>
                                 <input class="name" type="text" id="name1" placeholder="Write the name of the link">
-                            </div>
-                            <div>
-                                <label for="url1">Url</label>
-                                <input class="url" type="url" id="url1" placeholder="Write your link">
+                                <input class="url moveLeft" type="url" id="url1" placeholder="Write your link">
                             </div>
                         </li>
                         <li>
-                            <label>Report 02</label>
+                            <label class="moveLeft">Quick report 2</label>
                             <div>
-                                <label for="name2">Name</label>
                                 <input class="name" type="text" id="name2" placeholder="Write the name of the link">
-                            </div>
-                            <div>
-                                <label for="url2">Url</label>
-                                <input class="url" type="url" id="url2" placeholder="Write your link">
+                                <input class="url moveLeft" type="url" id="url2" placeholder="Write your link">
                             </div>
                         </li>
                         <li>
-                            <label>Report 03</label>
+                                <label class="moveLeft">Quick report 3</label>
                             <div>
-                                <label for="name3">Name</label>
                                 <input class="name" type="text" id="name3" placeholder="Write the name of the link">
-                            </div>
-                            <div>
-                                <label for="url3">Url</label>
-                                <input class="url" type="url" id="url3" placeholder="Write your link">
-                            </div>
-                        </li>
-                    </ul>
-                    <div class="form-buttons">
-                        <input type="button" class="cancel" value="Cancel">
-                        <input type="submit" class="save" value="Save">
-                    </div>
-                </form>
-            </div>
-            <iframe src="" class="frame-window"></iframe>
+                                <input class="url moveLeft" type="url" id="url3" placeholder="Write your link">
+                            </div></li></ul>
+                    <div class="reportsAndFolder">
+                        <input type="button" class="remove-all-links" value="Cancel">
+                        <input type="submit" class="update-new-changes" value="Save">
+                    </div></form></div><iframe src="" class="window-link"></iframe>
         </div>
 
         <div id="my-folders">
-            <div>
-                <a href="http://www.paulirish.com/" class="expand-icon" target="_blank">
-                    <img src="img/icons/expand.png" alt="open in new window">
+                <a target="_blank" href="http://www.sports.ru/" class="expand-icon">
+                    <img src="img/icons/expand.png" alt="got to link in new tab">
                 </a>
-            </div>
-            <iframe src="http://www.paulirish.com/" class="frame-window"></iframe>
+            <iframe src="http://www.sports.ru/" class="window-link"></iframe>
         </div>
 
         <div id="my-team-folders" class="my-team-folders">
             <div class="icons-bar">
-                <ul class="styled-select-list">
+                <ul class="sel">
                 </ul>
-                <div class="settings-icon-wrapper">
+                <div class="set-box">
                     <div class="settings-icon">
-                        <img src="img/icons/settings.png" alt="open in new window">
+                        <img src="img/icons/settings.png" alt="got to link in new tab">
                     </div>
                 </div>
-                <a href="" class="expand-icon" target="_blank">
-                    <img src="img/icons/expand.png" alt="open in new window">
+                <a target="_blank" href="" class="expand-icon">
+                    <img src="img/icons/expand.png" alt="got to link in new tab">
                 </a>
             </div>
 
             <div class="settings">
-                <form action="" onsubmit="event.preventDefault()">
+                <form action="">
                     <ul>
                         <li>
-                            <label>Folder 01</label>
+                            <label class="moveFolderLeft">My team folder 1</label>
                             <div>
-                                <label for="teamname1">Name</label>
-                                <input class="name" type="text" id="teamname1">
-                            </div>
-                            <div>
-                                <label for="teamurl1">URL</label>
-                                <input class="url" type="url" id="teamurl1">
+                                <input class="name" type="text" id="teamname1" placeholder="Write the name of the link">
+                                <input class="url moveLeft" type="url" id="teamurl1" placeholder="Write your link">
                             </div>
                         </li>
                         <li>
-                            <label>Folder 02</label>
+                            <label class="moveFolderLeft">My team folder 2</label>
                             <div>
-                                <label for="teamname2">Name</label>
-                                <input class="name" type="text" id="teamname2">
-                            </div>
-                            <div>
-                                <label for="teamurl2">URL</label>
-                                <input class="url" type="url" id="teamurl2">
+                                <input class="name" type="text" id="teamname2" placeholder="Write the name of the link">
+                                <input class="url moveLeft" type="url" id="teamurl2" placeholder="Write your link">
                             </div>
                         </li>
                         <li>
-                            <label>Folder 03</label>
+                            <label class="moveFolderLeft">My team folder 3</label>
                             <div>
-                                <label for="teamname3">Name</label>
-                                <input class="name" type="text" id="teamname3">
-                            </div>
-                            <div>
-                                <label for="teamurl3">URL</label>
-                                <input class="url" type="url" id="teamurl3">
-                            </div>
-                        </li>
-                    </ul>
-
-                    <div class="form-buttons">
-                        <input type="button" class="cancel" value="Cancel">
-                        <input type="submit" class="save" value="Save">
-                    </div>
-                </form>
-            </div>
-            <iframe src="" class="frame-window"></iframe>
-        </div>
-
+                                <input class="name" type="text" id="teamname3" placeholder="Write the name of the link">
+                                <input class="url moveLeft" type="url" id="teamurl3" placeholder="Write your link">
+                            </div></li></ul>
+							<div class="reportsAndFolder">
+                        <input type="button" class="remove-all-links" value="Cancel">
+                        <input type="submit" class="update-new-changes" value="Save">
+                    </div></form></div><iframe src="" class="window-link"></iframe></div>
         <div id="public-folders">
-            <div>
-                <a href="http://addyosmani.com/" class="expand-icon" target="_blank">
-                    <img src="img/icons/expand.png" alt="open in new window">
+                <a target="_blank" href="http://one.co.il/" class="expand-icon">
+                    <img src="img/icons/expand.png" alt="got to link in new tab">
                 </a>
-            </div>
-            <iframe src="http://addyosmani.com/" class="frame-window"></iframe>
+            <iframe src="http://one.co.il/" class="window-link"></iframe>
         </div>
     </section>
 </section>
